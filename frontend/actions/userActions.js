@@ -24,7 +24,7 @@ const sendEmail = (email) => async (dispatch) => {
 const getVerification = (email) => async (dispatch) => {
     dispatch({type: GET_VERIF_REQUEST, payload:{email}});
     try {
-        const {data} = await Axios.get("http://192.168.0.116:3000/api/users/getverification", {email});
+        const {data} = await Axios.get("http://192.168.0.116:3000/api/users/getverification/" + email);
         dispatch({type: GET_VERIF_SUCCESS, payload: data});
     }
     catch (error) {

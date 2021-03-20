@@ -9,31 +9,16 @@ export const IntroduceEmail = ({navigation}) => {
     const [email, setEmail] = useState("");
     const dispatch = useDispatch();
 
-    const {loading, userInfo, error } = sendEmail;
-
-    useEffect(() => {
-        if(userInfo) {
-            navigation.navigate("Waiting", {email: email});
-        }
-        
-
-        return () => {
-
-        };
-    }, [userInfo]);
 
     const submitHandler = (e) => {
         e.preventDefault();
         if(email != "") {
             dispatch(sendEmail({email}));
-            navigation.navigate("Waiting", {email: "test"});
+            navigation.navigate("Waiting", {email: email});
         }
     }
     
         return (
-            loading ?
-            <WaveIndicator color="orange" style={{marginTop:-300}} size={80}/>
-            :
             <View
                 style={{
                     flex: 1,
@@ -44,7 +29,6 @@ export const IntroduceEmail = ({navigation}) => {
                     paddingRight: 20
                 }}
             >
-                {error && <Text>{error.message}</Text>}
                 <Input placeholder="Email address" color='black' leftIcon={{ type: 'font-awesome', name: 'address-card' }} size={30} onChangeText={(x) => setEmail(x)}/>
                 <TouchableOpacity style={styles.button} onPress={submitHandler}>
                     <Text style={styles.text}>SUBMIT</Text>

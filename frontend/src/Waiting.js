@@ -4,17 +4,18 @@ import {WaveIndicator} from 'react-native-indicators';
 import {getVerification} from '../actions/userActions';
 import {useDispatch} from 'react-redux';
 
-export const Waiting = ({navigation, email}) => {
-    const { userInfo } = getVerification;
+export const Waiting = ({route, navigation}) => {
+    const { userInfo: userInfo } = getVerification;
+    const {email} = route.params;
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getVerification({email}));
+        console.log(email);
+        dispatch(getVerification(email));
         if(userInfo) {
             navigation.navigate("CameraScan");
          console.log("waiting");
         }
-        navigation.navigate("CameraScan");
       });
 
         return (

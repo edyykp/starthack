@@ -17,9 +17,16 @@ router.post('/storeemail', async function(req, res) {
     }
 });
 
-router.get('/getverification', async function(req, res) {
-    const email = req.body.email;
+router.get('/getverification/:email', async function(req, res) {
+    const user = await User.findOne({
+        email: req.params.email
+    });
 
-    console.log("sunt in getverification");
+    try {
+        res.send(user);
+    }
+    catch(error) {
+        res.status(401).send("error at fetching email verification code");
+    }
 })
 export default router;
