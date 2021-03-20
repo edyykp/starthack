@@ -1,22 +1,20 @@
 import React, { useEffect} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import {WaveIndicator} from 'react-native-indicators';
+import {useDispatch, useSelector} from 'react-redux';
 import {getVerification} from '../actions/userActions';
-import {useDispatch} from 'react-redux';
 
 export const Waiting = ({route, navigation}) => {
-    const { userInfo: userInfo } = getVerification;
+    const getVerif = useSelector(state => state.getVerification);
+    const { userInfo: userInfo } = getVerif;
     const {email} = route.params;
-
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log(email);
         dispatch(getVerification(email));
         if(userInfo) {
             navigation.navigate("CameraScan");
-         console.log("waiting");
         }
-      });
+      }, [userInfo]);
 
         return (
             <View style={{
