@@ -8,11 +8,15 @@ public class UserController {
    // @CrossOrigin(origins = "http://localhost:8080")
     @CrossOrigin(origins="*")
 
-    @GetMapping("/users")
+    @GetMapping("/user/")
     String function() {
         String x = "[{ \"name\": \"Vlad Andrei bucur\" }]";
         return x;
     }
+
+
+    //@PostMapping("user");
+
 
 
 }
