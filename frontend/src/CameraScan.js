@@ -6,6 +6,28 @@ export default function CameraScan() {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
+  const takePicture = async () => {
+        const options = {quality: 1, base64: true};
+        const scan_image_base64 = await camera.takePictureAsync(options);
+        const ApiKey = "1616255202Ln7L1FSlgmNzqzHb0FiyTbW2DMCl8bXhsWd79VSy";
+        const country_code = "ROU";
+        const card_code = "MRZ";
+        const requestOptions = {
+          method: 'POST',
+          headers: { "Api-Key": ApiKey },
+          body: JSON.stringify({ country_code:country_code, card_code:card_code, scan_image_url:scan_image_base64.base64})
+        };
+        console.log(requestOptions);
+        fetch('https://accurascan.com/api/v4/ocr', requestOptions)
+        .then(response => console.log(response.json()))
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => console.log(
+          error
+        ))
+};
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -21,7 +43,7 @@ export default function CameraScan() {
   }
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type} autoFocus="on">
+      <Camera style={styles.camera} type={type} autoFocus="on" ref={ref => {camera = ref;}}>
       <View style={{flex:0.1, justifyContent:"flex-end"}}>
         <Text style={{fontWeight:"bold", textAlign:"center", fontSize:20, textDecorationLine:"underline",shadowColor: "#000",shadowOffset: { width: 0, height: 7},
                         shadowOpacity: 0.43,
@@ -29,7 +51,7 @@ export default function CameraScan() {
                         elevation: 15,}}>Scan your ID card for identity approval</Text>
       </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={() => console.log("pressed")} style={styles.buttonCapture}>
+          <TouchableOpacity onPress={() => takePicture()} style={styles.buttonCapture}>
                 <Text style={{textAlign:"center", fontSize:20, letterSpacing:2, color:"white"}}>SCAN</Text>
           </TouchableOpacity>
         </View>
