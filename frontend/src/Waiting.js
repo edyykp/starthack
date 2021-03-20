@@ -1,17 +1,19 @@
 import React, { useEffect} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import {WaveIndicator} from 'react-native-indicators';
-import {useSelector} from 'react-redux';
+import {getVerification} from '../actions/userActions';
+import {useDispatch} from 'react-redux';
 
-export const Waiting = ({navigation}) => {
-    const sendEmail = useSelector((state) => state.sendEmail);
-    const { userInfo } = sendEmail;
+export const Waiting = ({navigation, email}) => {
+    const {loading,userInfo,error } = getVerification;
 
+    const dispatch = useDispatch();
     useEffect(() => {
+        dispatch(getVerification(email));
         if(userInfo) {
             navigation.navigate("IntroducePhone");
         }
-      }, [userInfo]);
+      });
 
         return (
             <View style={{

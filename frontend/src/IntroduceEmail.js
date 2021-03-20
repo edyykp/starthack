@@ -13,7 +13,7 @@ export const IntroduceEmail = ({navigation}) => {
 
     useEffect(() => {
         if(userInfo) {
-            navigation.navigate("Waiting");
+            navigation.navigate("Waiting", {email: email});
         }
         return () => {
 
