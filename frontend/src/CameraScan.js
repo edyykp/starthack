@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { Camera } from 'expo-camera';
+import axios from 'axios';
 
 export default function CameraScan() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -12,20 +13,11 @@ export default function CameraScan() {
         const ApiKey = "1616255202Ln7L1FSlgmNzqzHb0FiyTbW2DMCl8bXhsWd79VSy";
         const country_code = "ROU";
         const card_code = "MRZ";
-        const requestOptions = {
-          method: 'POST',
-          headers: { "Api-Key": ApiKey },
-          body: JSON.stringify({ country_code:country_code, card_code:card_code, scan_image_url:scan_image_base64.base64})
-        };
-        console.log(requestOptions);
-        fetch('https://accurascan.com/api/v4/ocr', requestOptions)
-        .then(response => console.log(response.json()))
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => console.log(
-          error
-        ))
+        const headers = {
+          "Api-Key": ApiKey
+        }
+        const response = await axios.post("https://accurascan.com/api/v4/ocr", {country_code: country_code, card_code: card_code, scan_image_base64: scan_image_base64.base64}, {headers: headers});
+        console.log(response.data);
 };
 
   useEffect(() => {
