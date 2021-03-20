@@ -5,16 +5,16 @@ import {getVerification} from '../actions/userActions';
 import {useDispatch} from 'react-redux';
 
 export const Waiting = ({navigation, email}) => {
-    const {loading,userInfo,error } = getVerification;
+    const { userInfo } = getVerification;
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getVerification(email));
+        dispatch(getVerification({email}));
         if(userInfo) {
-         //   navigation.navigate("CameraScan");
+            navigation.navigate("CameraScan");
          console.log("waiting");
         }
-       // navigation.navigate("CameraScan");
+        navigation.navigate("CameraScan");
       });
 
         return (
@@ -73,7 +73,15 @@ const styles = StyleSheet.create ({
     textAlign:"center",
     marginTop:20,
     color:"grey",
-    fontSize: 17  
+    fontSize: 17 ,shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    
+    elevation: 15, 
   },
   cancel: {
       alignSelf:"center",
@@ -82,7 +90,16 @@ const styles = StyleSheet.create ({
   cancelText: {
       color:"red",
       textDecorationLine: "underline",
-      fontSize:17
+      fontSize:17,
+      shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 7,
+},
+shadowOpacity: 0.43,
+shadowRadius: 9.51,
+
+elevation: 15,
   }
 
 });

@@ -15,6 +15,8 @@ export const IntroduceEmail = ({navigation}) => {
         if(userInfo) {
             navigation.navigate("Waiting", {email: email});
         }
+        
+
         return () => {
 
         };
@@ -24,6 +26,7 @@ export const IntroduceEmail = ({navigation}) => {
         e.preventDefault();
         if(email != "") {
             dispatch(sendEmail({email}));
+            navigation.navigate("Waiting", {email: "test"});
         }
     }
     
@@ -59,7 +62,16 @@ const styles = StyleSheet.create ({
     width: "80%",
     alignSelf: "center",
     borderRadius: 10,
-    height:70
+    height:70,
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 7,
+},
+shadowOpacity: 0.43,
+shadowRadius: 9.51,
+
+elevation: 15,
   },
   text: {
     fontSize:18,
