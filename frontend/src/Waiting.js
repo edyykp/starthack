@@ -11,8 +11,10 @@ export const Waiting = ({navigation, email}) => {
     useEffect(() => {
         dispatch(getVerification(email));
         if(userInfo) {
-            navigation.navigate("IntroducePhone");
+         //   navigation.navigate("CameraScan");
+         console.log("waiting");
         }
+       // navigation.navigate("CameraScan");
       });
 
         return (

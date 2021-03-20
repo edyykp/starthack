@@ -23,8 +23,7 @@ export const IntroduceEmail = ({navigation}) => {
     const submitHandler = (e) => {
         e.preventDefault();
         if(email != "") {
-            dispatch(sendEmail(email));
-            navigation.navigate("Waiting");
+            dispatch(sendEmail({email}));
         }
     }
     

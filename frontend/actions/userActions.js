@@ -9,7 +9,8 @@ import {SEND_EMAIL_FAIL,
     GET_VERIF_SUCCESS,
     GET_VERIF_FAIL} from '../constants/userConstants';
 
-const sendEmail = (email) => async (dispatch) => {
+const sendEmail = ({email}) => async (dispatch) => {
+    console.log(email);
     dispatch({type: SEND_EMAIL_REQUEST, payload:{email}});
     try {
         const {data} = await Axios.post("/api/users/storeemail", {email});
@@ -20,7 +21,8 @@ const sendEmail = (email) => async (dispatch) => {
     }
 }
 
-const getVerification = (email) => async (dispatch) => {
+const getVerification = ({email}) => async (dispatch) => {
+    console.log(email);
     dispatch({type: GET_VERIF_REQUEST, payload:{email}});
     try {
         const {data} = await Axios.get("/api/users/getverification", {email});
