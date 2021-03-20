@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {Provider, createStore} from 'react-redux';
 import Home from "./src/Home";
 import {IntroduceEmail} from "./src/IntroduceEmail";
+import {Waiting} from "./src/Waiting";
+import {IntroducePhone} from './src/IntroducePhone';
 import store from './store';
 
 const Stack = createStackNavigator();
@@ -16,6 +18,8 @@ export default class App extends React.Component {
       <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="IntroduceEmail" component={IntroduceEmail} />
+        <Stack.Screen name="Waiting" component={Waiting}/>
+        <Stack.Screen name="IntroducePhone" component={IntroducePhone}/>
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>

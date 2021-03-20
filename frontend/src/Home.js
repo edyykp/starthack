@@ -58,7 +58,6 @@ const styles = StyleSheet.create ({
   },
   text: {
     fontSize:25,
-    fontFamily:"Helvetica", 
     color:"white", 
     letterSpacing:1
   }

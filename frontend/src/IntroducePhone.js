@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {sendEmail} from '../actions/userActions';
 import {WaveIndicator} from 'react-native-indicators';
 
-export const IntroduceEmail = ({navigation}) => {
+export const IntroducePhone = ({navigation}) => {
     const [email, setEmail] = useState("");
     const dispatch = useDispatch();
 

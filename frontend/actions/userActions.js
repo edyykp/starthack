@@ -4,7 +4,10 @@ import Cookie from 'js-cookie';
 
 import {SEND_EMAIL_FAIL,
     SEND_EMAIL_REQUEST,
-    SEND_EMAIL_SUCCESS} from '../constants/userConstants';
+    SEND_EMAIL_SUCCESS,
+    GET_VERIF_REQUEST,
+    GET_VERIF_SUCCESS,
+    GET_VERIG_FAIL} from '../constants/userConstants';
 
 const sendEmail = (email) => async (dispatch) => {
     dispatch({type: SEND_EMAIL_REQUEST, payload:{email}});
@@ -17,4 +20,15 @@ const sendEmail = (email) => async (dispatch) => {
     }
 }
 
-export {sendEmail};
+const getVerification = (email) => async (dispatch) => {
+    dispatch({type: GET_VERIF_REQUEST, payload:{email}});
+    try {
+        const {data} = await Axios.get("/api/users/getverification", {email});
+        dispatch({type: GET_VERIF_SUCCESS, payload: data});
+    }
+    catch (error) {
+        dispatch({type: GET_VERIG_FAIL, payload: error.message});
+    }
+}
+
+export {sendEmail, getVerification};

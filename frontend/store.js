@@ -9,11 +9,12 @@ import thunk from 'redux-thunk';
 // const cartItems = Cookie.getJSON('cartItems', {sameSite: "Strict", secure: true}) || [];
 // const userInfo = Cookie.getJSON('userInfo', {sameSite: "Strict", secure: true}) || null;
 
-import {sendEmailReducer} from './reducers/dataReducer';
-const initialState = { userInfo: {} };
+import {sendEmailReducer,getVerificationReducer} from './reducers/dataReducer';
+const initialState = {  };
 
 const reducer = combineReducers({
-    sendEmail: sendEmailReducer
+    sendEmail: sendEmailReducer,
+    getVerification: getVerificationReducer
 })
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
