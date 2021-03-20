@@ -4,14 +4,12 @@ import User from '../models/userModel.mjs';
 const router = express.Router();
 
 router.post('/storeemail', async function(req, res) {
-    const email = req.body.email;
+    const {email} = req.body.email;
     const user = new User({
         email: email
     });
     try {
-        console.log("salvez?");
         await user.save();
-        console.log("am salvat");
         res.send(user);
     }
     catch(error) {
