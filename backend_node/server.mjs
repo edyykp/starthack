@@ -6,6 +6,7 @@ import path, {dirname} from 'path';
 import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes.mjs';
+import cors from 'cors';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -23,7 +24,8 @@ const apiLimiter = rateLimit({
 });
 
 const app = express();
-app.use("/api/", apiLimiter);
+app.use("/api", apiLimiter);
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.disable('x-powered-by');
