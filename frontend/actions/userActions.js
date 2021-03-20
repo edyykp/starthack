@@ -14,7 +14,7 @@ const sendEmail = ({email}) => async (dispatch) => {
     dispatch({type: SEND_EMAIL_REQUEST, payload:{email}});
     try {
         console.log(email);
-        const {data} = await Axios.post("/api/users/storeemail", {email});
+        const {data} = await Axios.post("http://localhost:3000/api/users/storeemail", {email});
         dispatch({type: SEND_EMAIL_SUCCESS, payload: data});
     }
     catch (error) {
@@ -26,7 +26,7 @@ const getVerification = ({email}) => async (dispatch) => {
     console.log(email);
     dispatch({type: GET_VERIF_REQUEST, payload:{email}});
     try {
-        const {data} = await Axios.get("/api/users/getverification", {email});
+        const {data} = await Axios.get("http://localhost:3000/api/users/getverification", {email});
         dispatch({type: GET_VERIF_SUCCESS, payload: data});
     }
     catch (error) {
