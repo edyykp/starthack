@@ -13,6 +13,7 @@ const sendEmail = ({email}) => async (dispatch) => {
     console.log(email);
     dispatch({type: SEND_EMAIL_REQUEST, payload:{email}});
     try {
+        console.log(email);
         const {data} = await Axios.post("/api/users/storeemail", {email});
         dispatch({type: SEND_EMAIL_SUCCESS, payload: data});
     }

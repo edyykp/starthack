@@ -14,7 +14,11 @@ public class UserController {
         return x;
     }
 
-
+    @PostMapping("/api/users/storeemail")
+    String getEmail(@RequestBody String email) {
+        System.out.println("email");
+        return "received";
+    }
     //@PostMapping("user");
 
 
