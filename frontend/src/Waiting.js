@@ -11,7 +11,9 @@ export const Waiting = ({route, navigation}) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getVerification(email));
+        console.log(userInfo);
         if(userInfo) {
+          if(userInfo.confirmedEmail == true)
             navigation.navigate("CameraScan");
         }
       }, [userInfo]);
